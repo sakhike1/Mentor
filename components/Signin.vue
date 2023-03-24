@@ -1,0 +1,100 @@
+<template>
+    <div class="isolate bg-white  ">
+        <Nav />
+        <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
+            <svg class="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
+                viewBox="0 0 1155 678">
+                <path fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)" fill-opacity=".3"
+                    d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
+                <defs>
+                    <linearGradient id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533" x1="1155.49" x2="-78.208" y1=".177"
+                        y2="474.645" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#9089FC" />
+                        <stop offset="1" stop-color="#FF80B5" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 py-20 mt-15">
+            <div class="flex items-center justify-center px-4 py-10  sm:px-6 lg:px-8 sm:py-16 lg:py-24">
+                <div class="xl:w-full xl:max-w-sm 2xl:max-w-md xl:mx-auto">
+                    <h2 class="text-3xl text-center font-bold leading-tight text-black sm:text-4xl">
+                        Sign in to Mentor
+                    </h2>
+
+                    <p class="mt-2 text-base text-center text-gray-600">
+                        Don’t have an account?
+                        <nuxt-link to="Signup"
+                            class="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 hover:underline focus:text-blue-700">
+                            Create a free account</nuxt-link>
+                    </p>
+
+                    <form action="#" method="POST" class="mt-8">
+                        <div class="space-y-5">
+                            <div>
+                                <label for="" class="text-base font-medium text-gray-900">
+                                    Email address
+                                </label>
+                                <div class="mt-2.5">
+                                    <input type="email" name="" id="" placeholder="Enter email to get started"
+                                        class="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <label for="" class="text-base font-medium text-gray-900">
+                                        Password
+                                    </label>
+
+                                    <a href="#" title=""
+                                        class="text-sm font-medium text-blue-600 hover:underline hover:text-blue-700 focus:text-blue-700">
+                                        Forgot password?
+                                    </a>
+                                </div>
+                                <div class="mt-2.5">
+                                    <input type="password" name="" id="" placeholder="Enter your password"
+                                        class="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 border border-gray-200 rounded-md bg-gray-50 focus:outline-none focus:border-blue-600 focus:bg-white caret-blue-600" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <button @click="login"
+                                    class="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-md focus:outline-none hover:bg-blue-700 focus:bg-blue-700">
+                                    Log in
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center px-4 py-10 sm:py-16 lg:py-24 sm:px-6 lg:px-8">
+                <div>
+                    <img class="w-full mx-auto" src="~/assets/2206_w039_n003_272b_p1_272-removebg-preview.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <Footer />
+</template>
+
+<script>
+definePageMeta({
+    layout: "custom",
+})
+
+const supabase = useSupabaseClient();
+
+const login = async () => {
+    const { error } = supabase.auth.signInWithOAuth({
+        provider: "google"
+    })
+    if (error) {
+        console.log(error);
+    }
+}
+</script>
+
+<style lang="scss" scoped></style>
